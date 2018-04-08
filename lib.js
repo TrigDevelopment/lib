@@ -97,5 +97,25 @@ var lib = {
             }
         }
         return array1.length == array2.length;
-    }
+    },
+    /**
+     * @param {function(number): number} _function
+     * @param {number} x
+     */
+    derivative(_function, x) {
+        var smallNumber = 0.0001;
+        var functionIncrement = _function(x + smallNumber) - _function(x);
+        return functionIncrement / smallNumber;
+    },
+    /**
+     * @param {number} arrayLength
+     * @returns {number[]}
+     */
+    zeroArray(arrayLength) {
+        var weights = [];
+        for (var i = 0; i < arrayLength; i++) {
+            weights.push(0);
+        }
+        return weights;
+    },
 };
