@@ -112,10 +112,95 @@ var lib = {
      * @returns {number[]}
      */
     zeroArray(arrayLength) {
-        var weights = [];
+        var array = [];
         for (var i = 0; i < arrayLength; i++) {
-            weights.push(0);
+            array.push(0);
         }
-        return weights;
+        return array;
+    },
+    /**
+     * @param {number} nRows
+     * @param {number} nColumns
+     * @returns {number[][]}
+     */
+    zeroMatrix(nRows, nColumns) {
+        var matrix = [];
+        for (var rowI = 0; rowI < nRows; ++rowI) {
+            matrix.push([]);
+            for (var columnI = 0; columnI < nColumns; ++columnI) {
+                matrix[rowI].push(0);
+            }
+        }
+        return matrix;
+    },
+    /**
+     * vector is vertical
+     * @param {number[][]} matrix
+     * @param {number[]} vector
+     */
+    multiplyMatrixOnVector(matrix, vector) {
+        for (var i = 0; i < matrix.length; ++i) {
+            if (matrix[i].length != vector.length) {
+                console.error("matrix[i].length != vector.length");
+            }
+        }
+
+        var resultVector = [];
+        for (var rowI = 0; rowI < matrix.length; ++rowI) {
+            var rowMultiplication = 0;
+            for (var i = 0; i < vector.length; ++i) {
+                rowMultiplication += matrix[rowI][i] * vector[i];
+            }
+            resultVector.push(rowMultiplication);
+        }
+        console.log(matrix);
+        return resultVector;
+    },
+    /**
+     * Supports matrixes with rows with different lengths
+     * @param {number[][]} matrix
+     * @param {function(any):any} _function
+     * @returns {number[][]} Same-sized matrix
+     */
+    matrixMap(matrix, _function) {
+        var newMatrix = [];
+        for (var rowI = 0; rowI < matrix.length; ++rowI) {
+            newMatrix.push([]);
+            for (var columnI = 0; columnI < matrix[rowI].length; ++columnI) {
+                newMatrix[rowI].push(_function(matrix[rowI][columnI]));
+            }
+        }
+        return newMatrix;
+    },
+    /**
+     * @param {number} nSpaces
+     * @returns {string}
+     */
+    spaces(nSpaces) {
+        var spaces = "";
+        for (var i = 0; i < nSpaces; ++i) {
+            spaces += '\u00A0';
+        }
+        return spaces;
+    },
+    heaviside(value) {
+        return value < 0 ? 0 : 1;
+    },
+
+    generateThreshold() {
+
+    },
+    br() {
+        document.body.appendChild(document.createElement("br"));
+    },
+    /**
+     * Output text into body, then br
+     * @param {string} text
+     */
+    println(text) {
+        var span = document.createElement("span");
+        span.innerText = text;
+        document.body.appendChild(span);
+        lib.br();
     },
 };
