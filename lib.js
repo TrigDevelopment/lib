@@ -1,5 +1,13 @@
 "use strict";
-var lib = {
+let lib = Object.seal({
+    /**
+     * # (7, 5) => 00111
+     * @param { number } number
+     * @param { number } length
+     */
+    toBinaryStringFixedLength(number, length) {
+        return number.toString(2).padStart(length, "0");
+    },
     /**
      * # (2, 3) => [0, 1, 0]
      * @param {number} number
@@ -203,4 +211,4 @@ var lib = {
         document.body.appendChild(span);
         lib.br();
     },
-};
+});
