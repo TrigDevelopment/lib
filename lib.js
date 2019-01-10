@@ -1,9 +1,50 @@
 "use strict";
 let lib = Object.seal({
     /**
+     * @param { number } cellI
+     * @param { number } nColumns
+     */
+    rowI(cellI, nColumns) {
+        return Math.floor(cellI / nColumns);
+    },
+    /**
+     * @param { number } cellI
+     * @param { number } nColumns
+     */
+    columnI(cellI, nColumns) {
+        return cellI % nColumns;
+    },
+    /**
+     * @param { string } string
+     */
+    divideIntoWords(string) {
+        return string.split(" ");
+    },
+    /**
+     * ("a", "b") => "a b "
+     * @param { string[] } words
+     */
+    wordsToString(words) {
+        let string = "";
+        for (let i = 0; i < words.length; ++i) {
+            string += words[i] + " ";
+        }
+        return string;
+    },
+    toFixed(number, length, radix) {
+        return number.toString(radix).padStart(length, "0");
+    },
+    /**
+     * @param {any} number
+     */
+    octet(number) {
+        return lib.toBinaryStringFixedLength(number, 8);
+    },
+    /**
      * # (7, 5) => 00111
      * @param { number } number
      * @param { number } length
+     * @returns { string }
      */
     toBinaryStringFixedLength(number, length) {
         return number.toString(2).padStart(length, "0");
