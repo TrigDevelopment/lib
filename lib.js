@@ -93,6 +93,17 @@ let lib = Object.seal({
         return result;
     },
     /**
+     * @param { boolean[] } binaryArray
+     */
+    binaryArrayToWord(binaryArray) {
+        let result = "";
+        for (let i = 0; i < binaryArray.length; ++i) {
+            result += (binaryArray[i] ? "1" : "0");
+        }
+        result += " ";
+        return result;
+    },
+    /**
      * in the next example 0 means false, 1 means true:
      * # 3 => [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
      * @param {number} selectionI
