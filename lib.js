@@ -120,7 +120,7 @@ let lib = Object.seal({
         }
         return words;
     },
-    
+
     /**
      * in the next example 0 means false, 1 means true:
      * # 3 => [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
@@ -265,9 +265,6 @@ let lib = Object.seal({
         return value < 0 ? 0 : 1;
     },
 
-    generateThreshold() {
-
-    },
     break() {
         document.body.appendChild(document.createElement("br"));
     },
@@ -287,5 +284,11 @@ let lib = Object.seal({
      */
     listenClick(element, _function) {
         element.addEventListener("click", _function);
+    },
+    /**
+     * @param { HTMLHtmlElement } element
+     */
+    toBody(element) {
+        document.body.appendChild(element);
     },
 });
