@@ -31,6 +31,12 @@ let lib = Object.seal({
         }
         return string;
     },
+    /**
+     * @param { number } number
+     * @param { number } length
+     * @param { number } radix
+     * @returns { string }
+     */
     toFixed(number, length, radix) {
         return number.toString(radix).padStart(length, "0");
     },
@@ -103,6 +109,18 @@ let lib = Object.seal({
         result += " ";
         return result;
     },
+    /**
+     * @param { number } wordLength
+     */
+    allBinaryWords(wordLength) {
+        const allBinaryArrays = lib.allBinaryArrays(wordLength);
+        let words = "";
+        for (let i = 0; i < Math.pow(2, wordLength); ++i) {
+            words += lib.binaryArrayToWord(allBinaryArrays[i]);
+        }
+        return words;
+    },
+    
     /**
      * in the next example 0 means false, 1 means true:
      * # 3 => [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
@@ -250,7 +268,7 @@ let lib = Object.seal({
     generateThreshold() {
 
     },
-    br() {
+    break() {
         document.body.appendChild(document.createElement("br"));
     },
     /**
@@ -259,8 +277,15 @@ let lib = Object.seal({
      */
     println(text) {
         var span = document.createElement("span");
-        span.innerText = text;
+        span.innerHTML = text;
         document.body.appendChild(span);
-        lib.br();
+        lib.break();
+    },
+    /**
+     * @param { HTMLHtmlElement} element
+     * @param {any} _function
+     */
+    listenClick(element, _function) {
+        element.addEventListener("click", _function);
     },
 });
